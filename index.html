@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="registerScreen" class="screen">
+        <h2>Register</h2>
+        <form id="registerForm">
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="text" id="mobile" placeholder="Mobile" required>
+            <select id="role">
+                <option value="IT_ADMIN">Admin</option>
+                <option value="IT_NORMAL_USER">Normal User</option>
+            </select>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <div id="loginScreen" class="screen">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" id="loginUsername" placeholder="Username" required>
+            <input type="password" id="loginPassword" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    
+    <div id="adminScreen" class="screen">
+        <h2>Company Listing</h2>
+        <input type="text" id="searchCompany" placeholder="Search by Company or User">
+        <table id="companyList">
+            
+            <thead>
+                <tr>
+                    <th>Company Name</th>
+                    <th>created By</th>
+                    <th>Company Address</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                for ($i = 0; $i < $max_rows; $i++) {
+                    if (isset($admin_data[$i])) {
+                        echo "<tr>";
+                        echo "<td> " . ($admin_data[$i]['company_name'] ?? 'N/A') . ";
+                        echo "<td> " . ($admin_data[$i]['admin_name'] ?? 'N/A') . "</td>";
+                        echo "<td> " . ($admin_data[$i]['address'] ?? 'N/A') . "</td>";
+                        echo "</tr>";
+                    }
+                    
+                    // User Name, Company, and Address Row
+                    if (isset($user_data[$i])) {
+                        echo "<tr>";
+                        echo "<td> " . ($admin_data[$i]['company_name'] ?? 'N/A') ."</td> ";
+                        echo "<td>User: " . ($user_data[$i]['name'] ?? 'N/A') . "</td>";
+                        echo "<td> " . ($admin_data[$i]['address'] ?? 'N/A') . "</td>";
+                        echo "</tr>";
+                    }
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div id="createEditCompanyScreen" class="screen">
+        <h2 id="companyFormTitle">Create Company</h2>
+        <form id="companyForm">
+            <input type="text" id="companyName" placeholder="Company Name" required>
+            <input type="text" id="companyAddress" placeholder="Company Address" required>
+            <input type="text" id="createdBy" placeholder="Created By" readonly>
+            <button type="submit">Save</button>
+        </form>
+    </div>
+
+    <div id="createEditCompanyScreen" class="screen">
+        <h2 id="companyFormTitle">Create Company</h2>
+        <form id="companyForm">
+            <input type="text" id="companyName" placeholder="Company Name" required>
+            <input type="text" id="companyAddress" placeholder="Company Address" required>
+            <input type="text" id="createdBy" placeholder="Created By" readonly>
+            <button type="submit">Save</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
